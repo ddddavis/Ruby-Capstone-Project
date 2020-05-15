@@ -1,2 +1,3 @@
-gem 'rubocop'
 gem 'rspec'
+gem 'rubocop'
+gem 'strscan'
