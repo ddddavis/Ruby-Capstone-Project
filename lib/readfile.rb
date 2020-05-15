@@ -9,7 +9,7 @@ class ReadFile
 
   def file_reader
     line = []
-    File.open(@file, 'r') { |i| line = i.readlines.map(&:chomp)}
-    @line = line.map { |i| StringScanner.new(i)}
+    File.open(@file, 'r') { |i| line = i.readlines.map(&:chomp) }
+    @line = line.map { |i| StringScanner.new(i) }
   end
 end

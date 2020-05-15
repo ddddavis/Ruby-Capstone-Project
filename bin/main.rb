@@ -13,6 +13,7 @@ if file
   checksIfEq(doc.file_reader)
   checksIfVar(doc.file_reader)
   checksSpacing(doc.file_reader)
+  checksEOL(doc.file_reader)
 else
   puts 'File name is required!'
 end
