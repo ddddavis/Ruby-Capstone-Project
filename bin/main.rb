@@ -9,11 +9,11 @@ file = ARGF.argv[0]
 
 if file
   doc = ReadFile.new(file)
-  checksIfUseStrict(doc.file_reader)
-  checksIfEq(doc.file_reader)
-  checksIfVar(doc.file_reader)
-  checksSpacing(doc.file_reader)
-  checksEOL(doc.file_reader)
+  checks_strict(doc.file_reader)
+  checks_eq(doc.file_reader)
+  checks_var(doc.file_reader)
+  checks_spacing(doc.file_reader)
+  checks_eol(doc.file_reader)
 else
   puts 'File name is required!'
 end
