@@ -2,7 +2,7 @@
 a == b
 foo == true
 bananas != 1
-value==undefined
+value == undefined
 typeof foo == 'undefined'
 'hello' != 'world'
 0 == 0
@@ -17,8 +17,8 @@ const variable4=4
 
 if(variable2===variable3){
   print(true);
-}else if (variable2!==variable3){
+}else if(variable2!==variable3){
   print(false)
-}else {
+}else{
   print(false)
 }

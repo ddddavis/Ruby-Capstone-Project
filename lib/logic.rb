@@ -1,13 +1,13 @@
 require 'strscan'
 require_relative 'readfile.rb'
-
+# rubocop: disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 module Logic
   def checks_strict(line)
     test = line.any? { |i| i.scan(/"use strict";/) }
     if_error(0, 1, 0, 0) if test == false
   end
 
-  def checks_eq(line)
+  def checks_relation_operator(line)
     line.each_with_index do |i, j|
       i.scan_until(/={3}/)
       test1 = i.matched
@@ -66,17 +66,18 @@ module Logic
     when 1
       puts 'Missing "use strict"; statement.'
     when 2
-      puts "In line #{line}: Expected '#{char1}', got '#{char2}'"
+      puts "In line #{line}: Expected '#{char1}', got '#{char2}'."
     when 3
-      puts "In line #{line}: Expected 'let' or 'const', got '#{char1}'"
+      puts "In line #{line}: Expected 'let' or 'const', got '#{char1}'."
     when 4
-      puts "In line #{line}: Expected space after '#{char1}'"
+      puts "In line #{line}: Expected space after '#{char1}'."
     when 5
-      puts "In line #{line}: Expected space before '#{char1}'"
+      puts "In line #{line}: Expected space before '#{char1}'."
     when 6
-      puts "In line #{line}: Expected space before and after '#{char1}'"
+      puts "In line #{line}: Expected space before and after '#{char1}'."
     when 7
-      puts "In line #{line}: Expected #{char1} at the end of file"
+      puts "In line #{line}: Expected #{char1} at the end of file."
     end
   end
 end
+# rubocop: enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
