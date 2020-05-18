@@ -22,4 +22,3 @@ if(variable2===variable3){
 }else {
   print(false)
 }
-

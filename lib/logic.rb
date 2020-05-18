@@ -27,7 +27,7 @@ module Logic
   def checks_var(line)
     line.each_with_index do |i, j|
       test = i.exist?(/\bvar\b/)
-      if_error(j + 1, 4, 'var', 0) if test.is_a?(Integer)
+      if_error(j + 1, 3, 'var', 0) if test.is_a?(Integer)
     end
   end
 
