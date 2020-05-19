@@ -16,9 +16,9 @@ let variable3=3
 const variable4=4
 
 if(variable2===variable3){
-  print(true);
+  console.log(true);
 }else if(variable2!==variable3){
-  print(false)
+  console.log(false)
 }else{
-  print(false)
+  console.log(false)
 }
