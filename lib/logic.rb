@@ -1,6 +1,6 @@
 require 'strscan'
 require_relative 'readfile.rb'
-# rubocop: disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop: disable Metrics/CyclomaticComplexity, Style/GuardClause
 module Logic
   def checks_strict(line)
     test = line.any? { |i| i.scan(/"use strict";/) }
@@ -31,38 +31,38 @@ module Logic
     end
   end
 
-  def checks_spacing_before(i, j, type, char)
-    if i.exist?(Regexp.new(char))
-        if_error(j + 1, type, char, 0) unless i.string.include?(" #{char}")
+  def checks_spacing_before(ele, iii, type, char)
+    if ele.exist?(Regexp.new(char))
+      if_error(iii + 1, type, char, 0) unless ele.string.include?(" #{char}")
     end
   end
 
-  def checks_spacing_after(i, j, type, char)
-    if i.exist?(Regexp.new(char))
-      unless i.string.length == 1
-        if_error(j + 1, type, char, 0) unless i.string.include?("#{char} ")
+  def checks_spacing_after(ele, iii, type, char)
+    if ele.exist?(Regexp.new(char))
+      unless ele.string.length == 1
+        if_error(iii + 1, type, char, 0) unless ele.string.include?("#{char} ")
       end
     end
   end
 
-  def checks_spacing_before_after(i, j, type, char, str)
-    if i.string.match?(Regexp.new(char))
-      unless i.string.match?(/\b!=\b/)
-        if_error(j + 1, type, str, 0) unless i.string.include?(" #{str} ")
+  def checks_spacing_before_after(ele, iii, type, char, str)
+    if ele.string.match?(Regexp.new(char))
+      unless ele.string.match?(/\b!=\b/)
+        if_error(iii + 1, type, str, 0) unless ele.string.include?(" #{str} ")
       end
     end
   end
 
   def checks_spacing(line)
     line.each_with_index do |i, j|
-      checks_spacing_before(i, j, 5, "{")
-      checks_spacing_after(i, j, 4, "}")
-      checks_spacing_after(i, j, 4, "if")
-      checks_spacing_before_after(i, j, 6, "\\belse if\\b", "else if")
-      checks_spacing_before_after(i, j, 6, "\\belse\\b", "else")
-      checks_spacing_before_after(i, j, 6, "^[^=]*=[^=]*$", "=")
-      checks_spacing_before_after(i, j, 6, "\\b===\\b", "===")
-      checks_spacing_before_after(i, j, 6, "\\b!==\\b", "!==")
+      checks_spacing_before(i, j, 5, '{')
+      checks_spacing_after(i, j, 4, '}')
+      checks_spacing_after(i, j, 4, 'if')
+      checks_spacing_before_after(i, j, 6, '\\belse if\\b', 'else if')
+      checks_spacing_before_after(i, j, 6, '\\belse\\b', 'else')
+      checks_spacing_before_after(i, j, 6, '^[^=]*=[^=]*$', '=')
+      checks_spacing_before_after(i, j, 6, '\\b===\\b', '===')
+      checks_spacing_before_after(i, j, 6, '\\b!==\\b', '!==')
     end
   end
 
@@ -89,4 +89,4 @@ module Logic
     end
   end
 end
-# rubocop: enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+# rubocop: enable Metrics/CyclomaticComplexity, Style/GuardClause
