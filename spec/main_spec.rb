@@ -2,6 +2,8 @@ require_relative '../lib/logic.rb'
 require_relative '../lib/readfile.rb'
 require_relative './spec_helper.rb'
 
+# rubocop: disable Layout/LineLength
+
 RSpec.describe Logic do
   include Logic
 
@@ -49,3 +51,4 @@ RSpec.describe Logic do
     end
   end
 end
+# rubocop: enable Layout/LineLength

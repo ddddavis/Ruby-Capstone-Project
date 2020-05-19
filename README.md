@@ -175,7 +175,7 @@ Good code:
 ```js
 if (variable2 === variable3) {
   console.log(true);
-} else if (variable2 !== variable3){
+} else if (variable2 !== variable3) {
   console.log(false)
 } else {
   console.log(false)
@@ -236,13 +236,12 @@ This project was built using these technologies.
 * [The Odin Project](https://www.theodinproject.com/)
 * [Ruby Documentation](https://www.ruby-lang.org/en/documentation/)
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/davisdambis/ruby-capstone-project.svg?style=flat-square
 [contributors-url]: https://github.com/davisdambis/ruby-capstone-project/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/davisdambis/ruby-capstone-project.svg?style=flat-square
 [forks-url]: https://github.com/davisdambis/ruby-capstone-project/network/members
-[stars-shield]: https://img.shields.io/github/stars/davisdambis/ruby-capstone-projectr.svg?style=flat-square
+[stars-shield]: https://img.shields.io/github/stars/davisdambis/ruby-capstone-project.svg?style=flat-square
 [stars-url]: https://github.com/davisdambis/ruby-capstone-project/stargazers
 [issues-shield]: https://img.shields.io/github/issues/davisdambis/ruby-capstone-project.svg?style=flat-square
 [issues-url]: https://github.com/davisdambis/ruby-capstone-project/issues
