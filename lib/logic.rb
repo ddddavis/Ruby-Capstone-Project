@@ -31,29 +31,38 @@ module Logic
     end
   end
 
+  def checks_spacing_before(i, j, type, char)
+    if i.exist?(Regexp.new(char))
+        if_error(j + 1, type, char, 0) unless i.string.include?(" #{char}")
+    end
+  end
+
+  def checks_spacing_after(i, j, type, char)
+    if i.exist?(Regexp.new(char))
+      unless i.string.length == 1
+        if_error(j + 1, type, char, 0) unless i.string.include?("#{char} ")
+      end
+    end
+  end
+
+  def checks_spacing_before_after(i, j, type, char, str)
+    if i.string.match?(Regexp.new(char))
+      unless i.string.match?(/\b!=\b/)
+        if_error(j + 1, type, str, 0) unless i.string.include?(" #{str} ")
+      end
+    end
+  end
+
   def checks_spacing(line)
     line.each_with_index do |i, j|
-      if i.exist?(/{/)
-        if_error(j + 1, 5, '{', 0) unless i.string.include?(' {')
-      end
-      if i.exist?(/}/)
-        next if i.string.length == 1
-
-        if_error(j + 1, 4, '}', 0) unless i.string.include?('} ')
-      end
-      if i.string.match?(/^[^=]*=[^=]*$/)
-        next if i.string.include?('!=')
-
-        if_error(j + 1, 6, '=', 0) unless i.string.include?(' = ')
-      end
-      if i.exist?(/\bif\b/)
-        if_error(j + 1, 4, 'if', 0) unless i.string.include?('if ')
-      end
-      if i.exist?(/\belse if\b/)
-        if_error(j + 1, 6, 'else if', 0) unless i.string.include?(' else if ')
-      elsif i.exist?(/\belse\b/)
-        if_error(j + 1, 6, 'else', 0) unless i.string.include?(' else ')
-      end
+      checks_spacing_before(i, j, 5, "{")
+      checks_spacing_after(i, j, 4, "}")
+      checks_spacing_after(i, j, 4, "if")
+      checks_spacing_before_after(i, j, 6, "\\belse if\\b", "else if")
+      checks_spacing_before_after(i, j, 6, "\\belse\\b", "else")
+      checks_spacing_before_after(i, j, 6, "^[^=]*=[^=]*$", "=")
+      checks_spacing_before_after(i, j, 6, "\\b===\\b", "===")
+      checks_spacing_before_after(i, j, 6, "\\b!==\\b", "!==")
     end
   end
 
@@ -66,17 +75,17 @@ module Logic
     when 1
       puts 'Missing "use strict"; statement.'
     when 2
-      puts "In line #{line}: Expected '#{char1}', got '#{char2}'."
+      puts "In line \e[34m#{line}\e[0m: Use \e[32m'#{char1}'\e[0m, instead of \e[31m'#{char2}'\e[0m."
     when 3
-      puts "In line #{line}: Expected 'let' or 'const', got '#{char1}'."
+      puts "In line \e[34m#{line}\e[0m: Use \e[32m'let'\e[0m or \e[32m'const'\e[0m, instead of \e[31m'#{char1}'\e[0m."
     when 4
-      puts "In line #{line}: Expected space after '#{char1}'."
+      puts "In line \e[34m#{line}\e[0m: Space expected after \e[32m'#{char1}'\e[0m."
     when 5
-      puts "In line #{line}: Expected space before '#{char1}'."
+      puts "In line \e[34m#{line}\e[0m: Space expected before \e[32m'#{char1}'\e[0m."
     when 6
-      puts "In line #{line}: Expected space before and after '#{char1}'."
+      puts "In line \e[34m#{line}\e[0m: Space expected before and after \e[32m'#{char1}'\e[0m."
     when 7
-      puts "In line #{line}: Expected #{char1} at the end of file."
+      puts "In line \e[34m#{line}\e[0m: Expected \e[32m'#{char1}'\e[0m at the end of file."
     end
   end
 end
