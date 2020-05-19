@@ -47,7 +47,7 @@ module Logic
 
   def checks_spacing_before_after(ele, iii, type, char, str)
     if ele.string.match?(Regexp.new(char))
-      unless ele.string.match?(/\b!=\b/)
+      unless ele.exist?(/\b^[^!=]*!=[^!=]*$\b/)
         if_error(iii + 1, type, str, 0) unless ele.string.include?(" #{str} ")
       end
     end
@@ -60,9 +60,9 @@ module Logic
       checks_spacing_after(i, j, 4, 'if')
       checks_spacing_before_after(i, j, 6, '\\belse if\\b', 'else if')
       checks_spacing_before_after(i, j, 6, '\\belse\\b', 'else')
-      checks_spacing_before_after(i, j, 6, '^[^=]*=[^=]*$', '=')
       checks_spacing_before_after(i, j, 6, '\\b===\\b', '===')
       checks_spacing_before_after(i, j, 6, '\\b!==\\b', '!==')
+      checks_spacing_before_after(i, j, 6, '\\b^[^=]*=[^=]*$\\b', '=')
     end
   end
 
