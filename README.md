@@ -153,8 +153,7 @@ Good code:
 function doesSomething() {
   const foo = 2;
 }
-
-
+\\ new line
 ```
 
 **Spacing**
