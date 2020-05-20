@@ -154,6 +154,7 @@ function doesSomething() {
   const foo = 2;
 }
 
+
 ```
 
 **Spacing**
